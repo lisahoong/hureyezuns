@@ -19,8 +19,6 @@ firebase.initializeApp(config);
 
 // Get a reference to the database service
 var database = firebase.database();
-
-
 function writeUserData(userId, name, email, imageUrl) {
   firebase.database().ref('users/' + userId).set({
     username: name,
@@ -28,3 +26,12 @@ function writeUserData(userId, name, email, imageUrl) {
     profile_picture : imageUrl
   });
 }
+
+app.post('/addUser', (req, res) => {
+  firebase.database().ref('users/' + req.body.email).set(req.body);
+})
+
+app.post('/checkReceivedPayments', (req, res) => {
+  //req.body.paymentTitle tells which payment to find in database and
+  firebase
+})
